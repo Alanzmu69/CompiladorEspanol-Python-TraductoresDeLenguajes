@@ -17,3 +17,9 @@ tokens = AnalizadorLexico.lexer(texto_input)
 
 for tok in tokens:
     print(tok)
+    
+parser = AnalizadorSintactico.Parser(tokens)
+arbol_sintactico = parser.parse()
+
+# Imprimir el árbol sintáctico resultante
+print(arbol_sintactico)
