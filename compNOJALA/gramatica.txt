@@ -1,3 +1,89 @@
+programa: { sentencia }
+sentencia: definicion_constante 
+         | definicion_variable 
+         | asignacion_variable
+         | declaracion_funcion 
+         | llamada_funcion 
+         | sentencia_control 
+         | "imprime" "(" expresion { "," expresion } ")" ";"
+         | "imprimenl" "(" expresion { "," expresion } ")" ";"
+         | "lee" "(" VARIABLE ")" ";"
+definicion_constante: "constante" tipo VARIABLE "=" expresion ";"
+definicion_variable: tipo lista_variables ";"
+lista_variables: VARIABLE { "," VARIABLE } [ "=" expresion ] [ "[" expresion "]" ] [ "=" "{" lista_valores "}" ]
+lista_valores: expresion { "," expresion }
+asignacion_variable: VARIABLE "=" expresion ";"
+declaracion_funcion: tipo VARIABLE "(" [ parametros_funcion ] ")" "{" { sentencia } "}"
+parametros_funcion: tipo VARIABLE { "," tipo VARIABLE }
+llamada_funcion: VARIABLE "(" [ argumentos_funcion ] ")" ";"
+argumentos_funcion: expresion { "," expresion }
+sentencia_control: "si" "(" expresion ")" "hacer" "{" { sentencia } "}" [ "sino" "{" { sentencia } "}" ]
+                 | "desde" VARIABLE "=" expresion "hasta" expresion "incr" expresion "{" { sentencia } "}"
+                 | "mientras" "que" expresion "{" { sentencia } "}"
+                 | "repite" "{" { sentencia } "}" "hasta" "que" expresion
+                 | "regresa" expresion ";"
+tipo: "nulo" | "entero" | "decimal" | "palabra" | "logico"
+expresion: TERMINO { ("+" | "-" | "*" | "/" | "%" | "^") TERMINO }
+         | VARIABLE 
+         | ENTERO
+         | DECIMAL
+         | CADENA
+         | "verdadero"
+         | "falso"
+         | VARIABLE "(" [ argumentos_funcion ] ")"
+TERMINO: "(" expresion ")"
+       | VARIABLE
+       | ENTERO
+       | DECIMAL
+       | CADENA
+       | "verdadero"
+       | "falso"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 programa ::= {declaracion} funcion funcion_principal
 
 declaracion ::= (calificador_constante)? declaracion_variable | declaracion_funcion

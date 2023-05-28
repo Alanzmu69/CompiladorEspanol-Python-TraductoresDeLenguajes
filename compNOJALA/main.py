@@ -1,25 +1,27 @@
 import AnalizadorLexico
-import AnalizadorSintactico
+#import AnalizadorSintactico
 
-texto_input = '''constante entero a = 5;
-entero b = 10;
-decimal c = 3.14;
-
-nulo principal() {
-  si (a > b) hacer {
-    imprime("a es mayor que b");
-  } sino {
-    imprime("a es menor o igual que b");
-  }
-}'''
+texto_input = '''
+nulo miFuncion() {
+    entero x;
+    x = 5;
+}
+miFuncion();'''
 
 tokens = AnalizadorLexico.lexer(texto_input)
+print(tokens)
 
-for tok in tokens:
-    print(tok)
-    
-parser = AnalizadorSintactico.Parser(tokens)
-arbol_sintactico = parser.parse()
+print('\n')
 
-# Imprimir el árbol sintáctico resultante
-print(arbol_sintactico)
+
+
+
+
+'''# Creación de tokens desde un código de entrada
+codigo_fuente = 'constante entero x = 5;'
+tokens = lexer(codigo_fuente)
+
+# Uso del analizador
+parser = Parser(tokens)
+parser.programa()  # Si no hay errores de sintaxis, esto no debería lanzar ninguna excepción
+'''

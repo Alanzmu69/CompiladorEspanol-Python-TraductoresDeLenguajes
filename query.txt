@@ -262,7 +262,7 @@ ademas ten en cuenta que los tokens por parte del analizador lexico salen de est
 
 
 Este es mi proyecto, consta de un analizador léxico y un analizador sintáctico, sin embargo, parece que existe un error 
-de desincronización cuando se le ingresan los tokens al analizador sintáctico, la lista de tokens que genera el analizador 
+cuando se le ingresan los tokens al analizador sintáctico, ademas de en la logica del analizador sintactico, la lista de tokens que genera el analizador 
 léxico es una lista de tuplas, ayúdame a hacer que mi proyecto funcione, por favor: 
 
 Funcion main: https://raw.githubusercontent.com/Alanzmu69/ccComp2/main/compNOJALA/main.py
