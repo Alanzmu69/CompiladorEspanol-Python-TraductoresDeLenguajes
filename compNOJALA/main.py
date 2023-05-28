@@ -1,5 +1,5 @@
-import lex
-import syntax
+import AnalizadorLexico
+import AnalizadorSintactico
 
 texto_input = '''constante entero a = 5;
 entero b = 10;
@@ -13,7 +13,7 @@ nulo principal() {
   }
 }'''
 
-tokens = lex.lexer(texto_input)
+tokens = AnalizadorLexico.lexer(texto_input)
 
 for tok in tokens:
     print(tok)

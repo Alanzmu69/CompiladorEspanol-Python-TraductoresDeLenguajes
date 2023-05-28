@@ -759,39 +759,29 @@ def si():
 
                 # Agregar el bloque del if al objeto Programa o al bloque padre actual
                 programa.agregar_comando(bloque_if)
-
                 if tok == "END":
                     tok, lex = scanner()  # Obtener el siguiente token y lexema
-
                     if tok == "IF":
                         tok, lex = scanner()  # Obtener el siguiente token y lexema
-
                         if tok == ";":
                             tok, lex = scanner()  # Obtener el siguiente token y lexema
-
                             # Éxito, if compilado correctamente
                             return
-
                         else:
                             # Error de sintaxis esperando un punto y coma al final del if
                             erra("Se esperaba un punto y coma al final del if")
-
                     else:
                         # Error de sintaxis esperando la palabra clave IF después de END
                         erra("Se esperaba la palabra clave IF después de END")
-
                 else:
                     # Error de sintaxis esperando la palabra clave END después del cuerpo del if
                     erra("Se esperaba la palabra clave END después del cuerpo del if")
-
             else:
                 # Error de sintaxis esperando la palabra clave THEN después de la expresión condicional
                 erra("Se esperaba la palabra clave THEN después de la expresión condicional")
-
         else:
             # Error de sintaxis esperando un paréntesis de cierre después de la expresión condicional
             erra("Se esperaba un paréntesis de cierre después de la expresión condicional")
-
     else:
         # Error de sintaxis esperando un paréntesis de apertura antes de la expresión condicional
         erra("Se esperaba un paréntesis de apertura antes de la expresión condicional")
