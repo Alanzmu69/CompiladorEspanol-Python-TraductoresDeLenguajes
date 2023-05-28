@@ -471,5 +471,6 @@ nulo principal() {
 
 tokens = lexer(texto_input)
 
-print(tokens)
+for tok in tokens:
+    print(tok)
 
