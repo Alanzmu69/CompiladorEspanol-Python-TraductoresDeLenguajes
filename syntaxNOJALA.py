@@ -457,29 +457,19 @@ class Parser:
             raise SyntaxError('Error de sintaxis')
 
 
-import sys
+texto_input = '''constante entero a = 5;
+entero b = 10;
+decimal c = 3.14;
 
-def main():
-    if len(sys.argv) != 2:
-        print('Uso: python3 nombre_archivo.py nombre_archivo.icc')
-        sys.exit(1)
-    
-    file_name = sys.argv[1]
-    if not file_name.endswith('.icc'):
-        print('El archivo debe tener la extension .icc')
-        sys.exit(1)
+nulo principal() {
+  si (a > b) hacer {
+    imprime("a es mayor que b");
+  } sino {
+    imprime("a es menor o igual que b");
+  }
+}'''
 
-    with open(file_name, 'r') as f:
-        input_text = f.read()
+tokens = lexer(texto_input)
 
-    try:
-        tokens = lexer(input_text)
-        parser = Parser(tokens)
-        ast = parser.parse()
-        print(ast)
-    except SyntaxError as e:
-        print(f'Error en la entrada | {str(e)}')
-
-if __name__ == '__main__':
-    main()
+print(tokens)
 
