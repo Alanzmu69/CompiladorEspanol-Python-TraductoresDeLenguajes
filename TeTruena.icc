@@ -1,5 +1,4 @@
 constante entero TAM=10;
-entero i, j, k=10, vec[TAM]={12, -1, 0, 99, 18, 23, 55, 10, 25, 30};
 palabra p="Hola";
 logico band=falso;
 constante decimal PI=3.141592;
