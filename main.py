@@ -12,7 +12,6 @@ COMPILADOR ESPAÑOL EN PYTHON
 
 import AnalizadorLexico
 import AnalizadorSintactico
-import AnalizadorSemantico
 import os
 
 # Nombre del archivo que quieres leer
@@ -45,5 +44,3 @@ else:
         except StopIteration:
            pass
 
-        semantico = AnalizadorSemantico.SemanticAnalyzer()
-        semantico.analyze(tokens)
