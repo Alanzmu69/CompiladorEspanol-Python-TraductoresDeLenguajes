@@ -44,3 +44,6 @@ else:
            sintactico.programa()
         except StopIteration:
            pass
+
+        semantico = AnalizadorSemantico.SemanticAnalyzer()
+        semantico.analyze(tokens)
