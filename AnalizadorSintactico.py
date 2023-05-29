@@ -283,7 +283,7 @@ class SyntacticAnalyzer:
         self.posicion_actual += 1
         if self.posicion_actual >= len(self.tokens):
             print("* El archivo '.icc' compilo con exito *")
-            sys.exit()
+            raise StopIteration
 
 
     def get_token(self):
