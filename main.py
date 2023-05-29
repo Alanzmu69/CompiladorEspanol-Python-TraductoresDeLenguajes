@@ -39,5 +39,8 @@ else:
         print(texto_input)
         print('\n')
         print('\n')
-        sintactico = AnalizadorSintactico.SyntacticAnalyzer(tokens)
-        sintactico.programa()
+        try:
+           sintactico = AnalizadorSintactico.SyntacticAnalyzer(tokens)
+           sintactico.programa()
+        except StopIteration:
+           pass
