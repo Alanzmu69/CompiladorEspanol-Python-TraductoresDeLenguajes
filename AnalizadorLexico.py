@@ -1,9 +1,9 @@
 RESERVADAS = ['nulo', 'entero', 'decimal', 'palabra', 'logico', 'constante', 'desde', 'si', 'hasta', 'mientras', 'regresa', 'hacer',
-'sino', 'incr', 'imprime', 'imprimenl', 'lee', 'repite', 'que']
+'sino', 'incr', 'imprime', 'imprimenl', 'lee', 'repite', 'que','principal']
 OPERADORES_LOGICOS = ['no', 'y', 'o']
 CONSTANTES_LOGICAS = ['verdadero', 'falso']
 OPERADORES_ARITMETICOS = ['+', '-', '*', '/', '%', '^']
-DELIMITADORES = [';', ',', '(', ')', '{', '}', '[', ']', ':', '=', '.']
+DELIMITADORES = [';', ',', '(', ')', '{', '}', '[', ']', ':', '.','=']
 DELIMITADORES_UNIVERSALES = [' ', '\t', '\n']
 OPERADORES_RELACIONALES = ['<', '>', '<=', '>=', '<>', '==']
 
@@ -36,9 +36,9 @@ def crear_digitos():
         avanzar()
 
     if puntos == 0:
-        return ('ENTERO', int(str_num))
+        return ('ENTERO', int(str_num),linea_actual)
     else:
-        return ('DECIMAL', float(str_num))
+        return ('DECIMAL', float(str_num),linea_actual)
 
 def crear_cadena():
     str_cadena = ''
@@ -50,7 +50,7 @@ def crear_cadena():
 
     if char_actual == '"':
         avanzar()  # Avanza sobre la comilla final
-        return ('CADENA', str_cadena)
+        return ('CADENA', str_cadena,linea_actual)
     else:
         raise SyntaxError(f"Cadena de texto no cerrada en la línea {linea_actual}, posición {posicion_actual}")
 
@@ -87,15 +87,15 @@ def lexer(input):
             elif char_actual.isdigit():
                 tokens.append(crear_digitos())
             elif char_actual in OPERADORES_ARITMETICOS:
-                tokens.append(('OP_ARITMETICO', char_actual))
+                tokens.append(('OP_ARITMETICO', char_actual,linea_actual))
                 avanzar()
             elif char_actual in OPERADORES_RELACIONALES:
                 # Verificamos si el próximo caracter también forma parte del operador relacional
                 if pos+1 < len(texto) and char_actual + texto[pos+1] in OPERADORES_RELACIONALES:
-                    tokens.append(('OP_RELACIONAL', char_actual + texto[pos+1]))
+                    tokens.append(('OP_RELACIONAL', char_actual + texto[pos+1],linea_actual))
                     avanzar()
                 else:
-                    tokens.append(('OP_RELACIONAL', char_actual))
+                    tokens.append(('OP_RELACIONAL', char_actual,linea_actual))
                 avanzar()
             elif char_actual.isalpha() or char_actual == '_':
                 id = ''
@@ -103,17 +103,17 @@ def lexer(input):
                     id += char_actual
                     avanzar()
                 if id in RESERVADAS:
-                    tokens.append(('RESERVADA', id))  # Las palabras reservadas son tokens
+                    tokens.append(('RESERVADA', id,linea_actual))  # Las palabras reservadas son tokens
                 elif id in OPERADORES_LOGICOS:
-                    tokens.append(('OP_LOGICO', id))
+                    tokens.append(('OP_LOGICO', id,linea_actual))
                 elif id in CONSTANTES_LOGICAS:
-                    tokens.append(('CONST_LOGICA', id))
+                    tokens.append(('CONST_LOGICA', id,linea_actual))
                 else:
-                    tokens.append(('VARIABLE', id))
+                    tokens.append(('IDENTIFICADOR', id,linea_actual))
             elif char_actual == '"':
                 tokens.append(crear_cadena())
             elif char_actual in DELIMITADORES:
-                tokens.append(('DELIMITADOR', char_actual))
+                tokens.append(('DELIMITADOR', char_actual,linea_actual))
                 avanzar()
             else:
                 raise SyntaxError(f"Caracter inesperado '{char_actual}' en la línea {linea_actual}, posición {posicion_actual}")
