@@ -270,7 +270,7 @@ class SyntacticAnalyzer:
         if self.tokens[self.posicion_actual][0] == 'DELIMITADOR' and self.tokens[self.posicion_actual][1] == '}':
             self.avanzar()
         else:
-            print(f"Se esperaba '}}' en la línea {self.tokens[self.posicion_actual][2]}")
+            print(f"Se esperaba 'Parentesis Derecho' en la línea {self.tokens[self.posicion_actual][2]}")
             sys.exit()
         
     def __call__(self, tokens):
