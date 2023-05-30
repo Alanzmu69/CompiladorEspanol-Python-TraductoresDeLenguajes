@@ -32,7 +32,8 @@ else:
         with open(nombre_archivo, 'r') as file:
             texto_input = file.read()
 
-        tokens = AnalizadorLexico.lexer(texto_input)
+        tokens = AnalizadorLexico.Lexer(texto_input)
+        tokens = tokens.lexer()
         print('\n')
         print('\n')
         print(texto_input)
