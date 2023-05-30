@@ -9,7 +9,7 @@ class SyntacticAnalyzer:
 
     def programa(self):
         while self.posicion_actual < len(self.tokens) and self.tokens[self.posicion_actual][1] != 'principal':
-
+            print(self.tokens[self.posicion_actual])
             self.declaracion()
             
         self.funcion_principal()
@@ -28,6 +28,10 @@ class SyntacticAnalyzer:
 
     def tipo(self):
         if self.tokens[self.posicion_actual][0] == 'RESERVADA' and self.tokens[self.posicion_actual][1] in ['nulo', 'entero', 'decimal', 'palabra', 'logico']:
+            if self.tokens[self.posicion_actual+1][0] == 'IDENTIFICADOR':
+                if self.tokens[self.posicion_actual+2][1] == '(':
+                    print(self.tokens[self.posicion_actual])
+                    self.declaracion_funcion()
             self.avanzar()
         else:
             print(f"Se esperaba un tipo de dato en la linea {self.tokens[self.posicion_actual][2]}")
@@ -52,8 +56,10 @@ class SyntacticAnalyzer:
 
     def identificador(self):
         if self.tokens[self.posicion_actual][0] == 'IDENTIFICADOR':
+            print(self.tokens[self.posicion_actual])
             self.avanzar()
         else:
+            print(self.tokens[self.posicion_actual])
             print(f"Se esperaba un identificador en la linea {self.tokens[self.posicion_actual][2]}")
             sys.exit()
 
@@ -74,7 +80,8 @@ class SyntacticAnalyzer:
         
     def declaracion_funcion(self):
         if self.tokens[self.posicion_actual][0] == 'RESERVADA' and self.tokens[self.posicion_actual][1] in ['nulo', 'entero', 'decimal', 'palabra', 'logico']:
-            self.tipo()
+            self.avanzar()
+            print(self.tokens[self.posicion_actual])
             self.identificador()
             if self.tokens[self.posicion_actual][0] == 'DELIMITADOR' and self.tokens[self.posicion_actual][1] == '(':
                 self.avanzar()

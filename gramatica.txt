@@ -41,49 +41,6 @@ TERMINO: "(" expresion ")"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 programa ::= {declaracion} funcion funcion_principal
 
 declaracion ::= (calificador_constante)? declaracion_variable | declaracion_funcion
